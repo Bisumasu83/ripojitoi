@@ -1,7 +1,23 @@
 import streamlit as st
-import random
-st.title("おみくじアプリ")
-if st.button("おみくじを引く"):
-    results=["大吉","中吉","小吉","吉","凶","大凶"]
-    result=random.choice(results)
-    st.write(f"結果:{result}")
+
+# 素数判定関数
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# アプリケーションのタイトル
+st.title("素数判定アプリケーション")
+
+# ユーザー入力
+number = st.number_input("判定したい数を入力してください", min_value=0, step=1)
+
+# 素数判定
+if number:
+    if is_prime(number):
+        st.write(f"{number} は素数です！")
+    else:
+        st.write(f"{number} は素数ではありません。")
